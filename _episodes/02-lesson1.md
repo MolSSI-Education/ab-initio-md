@@ -5,6 +5,9 @@ molecule carbon monoxide.  That is, we are going to use various electronic struc
 We will start by importing the necessary libraries:
 
 `import numpy as np`
+
 `import psi4`
+
 `from matplotlib import pyplot as plt`
+
 `from scipy.interpolate import InterpolatedUnivariateSpline`
