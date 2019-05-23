@@ -15,10 +15,10 @@ FIXME
 
 {% include links.md %}
 
-```
+``` {: .language-python}
 import numpy as np
 import psi4
 from matplotlib import pyplot as plt
 from scipy.interpolate import InterpolatedUnivariateSpline
 ```
-{: .language-python}
+
