@@ -3,12 +3,12 @@ title: "_ab_ _initio_ potential energy surface"
 teaching: 0
 exercises: 0
 questions:
-- "How can we simulate the vibrational motion of molecules subject to realistic intramolecular forces?"
+- "How do we obtain realistic intramolecular forces?"
 objectives:
-- "We can solve Newton's equations of motion for relative motion of atoms subject to intramolecular forces."
+- "To provide a simple demonstration of the computation of potential energy surfaces for a diatomic molecule and subsequent determination of intramolecular forces."
 keypoints:
-- "We can use quantum chemistry to obtain a potential energy surface, from which realistic intramolecular forces 
-can be derived.  We can then perform molecular dynamics simulations to solve Newton's equation of motion for the relative motion of atoms subject to realistic intramolecular forces."
+- "Psi4numpy provides an easy framework for computing and manipulating quantum chemical properties, including molecular energies required for potential energy surfaces.  Scipy's interpolation libraries can facilitate the fitting of potential
+energy surfaces, and for automatically computing derivatives of these surfaces to obtain intramolecular forces."
 ---
 
 {% include links.md %}
