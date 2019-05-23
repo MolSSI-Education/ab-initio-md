@@ -61,32 +61,73 @@ plt.plot(r_array,CCSD_E_array,'g*', label='CCSD')
 ```
 {: .language-python}
 
-We will now define two arrays: r_array will be an array of values for the $HF$ bond length and E_array will hold the electronic energy values corresponding to each separation.  
+Now that you have the raw data, we will interpolate this data using cubic splines.  This will permit us to 
+estimate the potential energy at any arbitrary separation between 0.5 and 2.3 Angstroms (roughly 
+1 and 4.3 a.u.) with fairly high confidence for each level of theory, and will also allow us to estimate the corresponding
+forces 
+(the negative of the derivative of the PES with respect to separation)
+at any separation between 1.0 and 4.3 a.u. since the derivative of cubic splines are readily available.
+
+First, we wwill interpolate the energies for each level of theory:
 
 ``` 
 ### use cubic spline interpolation
 order = 3
-### form the interpolator object for the data
-for i in range(0,len(r_array)):
-    val = r_array[i]/0.529
-    r_array[i] = val
-    
-sE = InterpolatedUnivariateSpline(r_array, E_array, k=order)
+
+### get separation vector in atomic units
+r_array_au = 1.89*r_array 
+
+### spline for RHF Energy
+RHF_E_Spline = InterpolatedUnivariateSpline(r_array_au, HF_E_array, k=order)
+
+### spline for MP2 Energy
+MP2_E_Spline = InterpolatedUnivariateSpline(r_array_au, MP2_E_array, k=order)
+
+### spline for CCSD Energy
+CCSD_E_Spline = InterpolatedUnivariateSpline(r_array_au, CCSD_E_array, k=order)
+
+
 ### form a much finer grid
 r_fine = np.linspace(0.5/0.529,2.3/0.529,200)
-### compute the interpolated/extrapolated values for E on this grid
-E_fine = sE(r_fine)
-### plot the interpolated data
-plt.plot(r_fine, E_fine, 'blue')
+
+### compute the interpolated/extrapolated values for RHF Energy on this grid
+RHF_E_fine = RHF_E_Spline(r_fine)
+
+### compute the interpolated/extrapolated values for RHF Energy on this grid
+MP2_E_fine = MP2_E_Spline(r_fine)
+
+### compute the interpolated/extrapolated values for RHF Energy on this grid
+CCSD_E_fine = CCSD_E_Spline(r_fine)
+
+
+### plot the interpolated data to check our fit!
+plt.plot(r_fine, RHF_E_fine, 'red', r_array_au, HF_E_array, 'r*')
+plt.plot(r_fine, MP2_E_fine, 'green', r_array_au, MP2_E_array, 'g*')
+plt.plot(r_fine, CCSD_E_fine, 'blue', r_array_au, CCSD_E_array, 'b*')
+
 plt.show()
+```
+{: .language-python}
 
-### take the derivative of potential
-fE = sE.derivative()
-### force is the negative of the derivative
-F_fine = -1*fE(r_fine)
+Next, we can compute the forces!
 
-### plot the forces
-plt.plot(r_fine, F_fine, 'black')
+```
+### take the derivative of the potential to get the negative of the force from RHF
+RHF_Force = RHF_E_Spline.derivative() 
+
+### negative of the force from MP2
+MP2_Force = MP2_E_Spline.derivative()
+
+### negative of the force from CCSD
+CCSD_Force = CCSD_E_Spline.derivative()
+
+### let's plot the forces for each level of theory!
+
+### plot the forces... note we need to multiply by -1 since the spline
+### derivative gave us the negative of the force!
+plt.plot(r_fine, -1*RHF_Force(r_fine), 'red')
+plt.plot(r_fine, -1*MP2_Force(r_fine), 'green')
+plt.plot(r_fine, -1*CCSD_Force(r_fine), 'blue')
 plt.show()
 ```
 {: .language-python}
