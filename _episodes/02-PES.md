@@ -48,3 +48,32 @@ plt.plot(r_array,HF_E_array,'*')
 plt.plot(r_array,MP2_E_array,'*')
 plt.plot(r_array,CCSD_E_array,'*')
 ```
+
+We will now define two arrays: r_array will be an array of values for the $HF$ bond length and E_array will hold the electronic energy values corresponding to each separation.  
+
+``` {: .language-python}
+### use cubic spline interpolation
+order = 3
+### form the interpolator object for the data
+for i in range(0,len(r_array)):
+    val = r_array[i]/0.529
+    r_array[i] = val
+    
+sE = InterpolatedUnivariateSpline(r_array, E_array, k=order)
+### form a much finer grid
+r_fine = np.linspace(0.5/0.529,2.3/0.529,200)
+### compute the interpolated/extrapolated values for E on this grid
+E_fine = sE(r_fine)
+### plot the interpolated data
+plt.plot(r_fine, E_fine, 'blue')
+plt.show()
+
+### take the derivative of potential
+fE = sE.derivative()
+### force is the negative of the derivative
+F_fine = -1*fE(r_fine)
+
+### plot the forces
+plt.plot(r_fine, F_fine, 'black')
+plt.show()
+```
