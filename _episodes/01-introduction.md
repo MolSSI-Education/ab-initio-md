@@ -3,7 +3,7 @@ title: "Introduction"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "How can we simulate the vibrational motion of molecules subject to realistic intramolecular forces?"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:
