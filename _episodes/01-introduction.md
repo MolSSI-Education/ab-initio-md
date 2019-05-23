@@ -19,7 +19,7 @@ Molecular Dynamics simulations provide a powerful tool for studying the motion o
 
 The key idea is that given these (describe trajectories)
 
-* maybe here have a statement of these laws in words, perhaps with a link to some document where the equations are typeset *
+maybe here have a statement of these laws in words, perhaps with a link to some document where the equations are typeset
 
 Forces come from _ab_ _initio_ potential energy surface
 
