@@ -15,3 +15,9 @@ FIXME
 
 {% include links.md %}
 
+'''
+import numpy as np
+import psi4
+from matplotlib import pyplot as plt
+from scipy.interpolate import InterpolatedUnivariateSpline
+'''
