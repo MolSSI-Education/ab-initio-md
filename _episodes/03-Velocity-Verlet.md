@@ -1,14 +1,13 @@
 ---
-title: "_ab_ _initio_ potential energy surface"
+title: "Velocity Verlet Algorithm"
 teaching: 0
 exercises: 0
 questions:
-- "How do we obtain realistic intramolecular forces?"
+- "How do we practically solve Newton's equations of motion?"
 objectives:
-- "To provide a simple demonstration of the computation of potential energy surfaces for a diatomic molecule and subsequent determination of intramolecular forces."
+- "To Demonstrate the implementation of the Velocity-Verlet algorithm."
 keypoints:
-- "Psi4numpy provides an easy framework for computing and manipulating quantum chemical properties, including molecular energies required for potential energy surfaces.  Scipy's interpolation libraries can facilitate the fitting of potential
-energy surfaces, and for automatically computing derivatives of these surfaces to obtain intramolecular forces."
+- "Velocity-Verlet algorithm provides a simple and stable numerical solution to Newton's equations of motion.  We can validate our implementation against the exactly-solvable dynamics of a classical harmonic oscillator."
 ---
 
 {% include links.md %}
@@ -30,4 +29,4 @@ def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
     
     return result
     ```
-    
+    {: .language-python}
