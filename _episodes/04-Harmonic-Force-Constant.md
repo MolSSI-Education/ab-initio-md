@@ -1,3 +1,17 @@
+---
+title: "Force Constant for Harmonic Potential"
+teaching: 0
+exercises: 0
+questions:
+- "How do we define the potential within the Harmonic approxmation?"
+objectives:
+- "The second derivative at the equlibrium bond length is used to define the force constant, which defines the harmonic potential and force."
+keypoints:
+- "Each level of theory has a unique potential energy curve and might be expected to give a unique force constant."
+---
+
+{% include links.md %}
+
 ```
 ### get second derivative of potential energy curve... recall that we fit a spline to
 ### to the first derivative already and called that spline function X_Force, where
