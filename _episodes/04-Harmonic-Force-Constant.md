@@ -44,3 +44,4 @@ plt.plot(r_fine, MP2_Harm_Pot, 'green')
 plt.plot(r_fine, CCSD_Harm_Pot, 'blue')
 plt.show()
 ```
+{: .language-python}
