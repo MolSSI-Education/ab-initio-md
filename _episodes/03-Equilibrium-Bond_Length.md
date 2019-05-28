@@ -1,3 +1,16 @@
+---
+title: "Finding the equilibrium bond length"
+teaching: 0
+exercises: 0
+questions:
+- "How do we find the equilibrium bond length of our diatomic molecule?"
+objectives:
+- "The equilibrium bond length for a diatomic molecule is defined as the separation that minimizes the total electronic energy; we can identify this as the minimum on our potential energy curves.."
+keypoints:
+- "Each level of theory has a unique potential energy curve and might be expected to give a unique equilibrium bond length.  We have fit each potential energy curve with splines, so there may be limitations to the precision in our equilibrium bond length estimate coming from the resultion of the points we fit our spline to, or from the fit of the spline itself... which do you think is more significant?"
+---
+
+{% include links.md %}
 ```
 ### Find Equilibrium Bond-Lengths for each level of theory
 RHF_Req_idx = np.argmin(RHF_E_fine)
