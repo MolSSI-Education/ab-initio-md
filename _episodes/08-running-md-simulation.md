@@ -48,4 +48,4 @@ for i in range(1,N_updates):
 plt.plot(t_array, r_vs_t)
 plt.show()
 ```
-{: language python}
+{: .language-python}
