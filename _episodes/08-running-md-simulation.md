@@ -1,3 +1,14 @@
+---
+title: "Running the molecular dynamics simulation!"
+teaching: 0
+exercises: 0
+questions:
+- "What does the molecular dynamics simulation tell us?"
+objectives:
+- "To demonstrate the execution of a molecular dynamics simulation and analysis of basic results."
+keypoints:
+- "The direct output of a molecular dynamics simulation are the positions and velocities/momenta of the atoms being studied."
+---
 
 ```
 ### how many updates do you want to perform?
