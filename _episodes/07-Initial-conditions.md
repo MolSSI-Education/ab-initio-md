@@ -1,3 +1,16 @@
+---
+title: "Choosing intial bond-length and velocity"
+teaching: 0
+exercises: 0
+questions:
+- "How do we initialize the position and velocity of the atoms for our molecular dynamics simulation?"
+objectives:
+- "To demonstrate a reasonable strategy for initializing a molecular dynamics simulation of vibrational motion."
+keypoints:
+- "We can utilize the virial theorem from quantum mechanics to provide a reasonable value of the classical velocity associated with vibrational motion."
+---
+
+{% include links.md %}
 ```
 ### define "ground-state" velocity for each level of theory
 v_RHF = np.sqrt( np.sqrt(RHF_k/mu)/(2*mu))
