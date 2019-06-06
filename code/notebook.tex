@@ -1,0 +1,905 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{PES\_VV\_v1}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{\texorpdfstring{\emph{Ab} \emph{initio} molecular dynamics of
+the vibrational motion of
+HF}{Ab initio molecular dynamics of the vibrational motion of HF}}\label{ab-initio-molecular-dynamics-of-the-vibrational-motion-of-hf}
+
+We are going to construct what is often referred to as an \emph{ab}
+\emph{initio} potential energy surface of the diatomic molecule hydrogen
+fluoride. That is, we are going to use various electronic structure
+theories (Hartree-Fock theory (RHF), 2nd-order perturbation theory
+(MP2), and Coupled Cluster theory with single and double substitutions
+(CCSD)) to compute the electronic energy at different geometries of a
+simple diatomic molecule. The same basis set (correlation consistent
+polarized triple-zeta, cc-pVTZ) will be used for all calculations. We
+will use Psi4numpy to facilitate the electronic structure calculations,
+and then the interpolation capabilities of scipy to simplify the
+evalution of the potential energy at separations for which we did not
+explicitly evaluate the electronic energy. We will also use scipy to
+differentiate the interpolated potential energy surface to obtain the
+forces acting on the atoms at different separations.
+
+We will start by importing the necessary libraries:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{psi4}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
+        \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{interpolate} \PY{k}{import} \PY{n}{InterpolatedUnivariateSpline}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} template for the z\PYZhy{}matrix}
+         \PY{n}{mol\PYZus{}tmpl} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}\PY{l+s+s2}{H}
+         \PY{l+s+s2}{F 1 **R**}\PY{l+s+s2}{\PYZdq{}\PYZdq{}\PYZdq{}}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} array of bond\PYZhy{}lengths in anstromgs}
+         \PY{n}{r\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.55}\PY{p}{,} \PY{l+m+mf}{0.6}\PY{p}{,} \PY{l+m+mf}{0.65}\PY{p}{,} \PY{l+m+mf}{0.7}\PY{p}{,} \PY{l+m+mf}{0.75}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{l+m+mf}{0.85}\PY{p}{,} \PY{l+m+mf}{0.9}\PY{p}{,} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{1.1}\PY{p}{,} \PY{l+m+mf}{1.2}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{,} \PY{l+m+mf}{1.4}\PY{p}{,} \PY{l+m+mf}{1.5}\PY{p}{,} \PY{l+m+mf}{1.6}\PY{p}{,} \PY{l+m+mf}{1.7}\PY{p}{,} \PY{l+m+mf}{1.8}\PY{p}{,} \PY{l+m+mf}{1.9}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{,} \PY{l+m+mf}{2.1}\PY{p}{,} \PY{l+m+mf}{2.2}\PY{p}{,} \PY{l+m+mf}{2.3}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} array for different instances of the HF molecule}
+         \PY{n}{molecules} \PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} array for the different RHF energies for different HF bond\PYZhy{}lengths}
+         \PY{n}{HF\PYZus{}E\PYZus{}array} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} array for the different MP2 energies for different HF bond\PYZhy{}lengths}
+         \PY{n}{MP2\PYZus{}E\PYZus{}array} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} array for the different CCSD energies for different HF bond\PYZhy{}lengths}
+         \PY{n}{CCSD\PYZus{}E\PYZus{}array} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} loop over the different bond\PYZhy{}lengths, create different instances}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} of HF molecule}
+         \PY{k}{for} \PY{n}{r} \PY{o+ow}{in} \PY{n}{r\PYZus{}array}\PY{p}{:}
+             \PY{n}{molecule} \PY{o}{=} \PY{n}{psi4}\PY{o}{.}\PY{n}{geometry}\PY{p}{(}\PY{n}{mol\PYZus{}tmpl}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{**R**}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{str}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             \PY{n}{molecules}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{molecule}\PY{p}{)}
+             
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} loop over instances of molecules, compute the RHF, MP2, and CCSD}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} energies and store them in their respective arrays}
+         \PY{k}{for} \PY{n}{mol} \PY{o+ow}{in} \PY{n}{molecules}\PY{p}{:}
+             \PY{n}{energy} \PY{o}{=} \PY{n}{psi4}\PY{o}{.}\PY{n}{energy}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{SCF/cc\PYZhy{}pVTZ}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{molecule}\PY{o}{=}\PY{n}{mol}\PY{p}{)}
+             \PY{n}{HF\PYZus{}E\PYZus{}array}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{energy}\PY{p}{)}
+             \PY{n}{energy} \PY{o}{=} \PY{n}{psi4}\PY{o}{.}\PY{n}{energy}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MP2/cc\PYZhy{}pVTZ}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{molecule}\PY{o}{=}\PY{n}{mol}\PY{p}{)}
+             \PY{n}{MP2\PYZus{}E\PYZus{}array}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{energy}\PY{p}{)}
+             \PY{n}{energy} \PY{o}{=} \PY{n}{psi4}\PY{o}{.}\PY{n}{energy}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{CCSD/cc\PYZhy{}pVTZ}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{molecule}\PY{o}{=}\PY{n}{mol}\PY{p}{)}
+             \PY{n}{CCSD\PYZus{}E\PYZus{}array}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{energy}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Plot the 3 different PES}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}array}\PY{p}{,}\PY{n}{HF\PYZus{}E\PYZus{}array}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RHF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}array}\PY{p}{,}\PY{n}{MP2\PYZus{}E\PYZus{}array}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MP2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}array}\PY{p}{,}\PY{n}{CCSD\PYZus{}E\PYZus{}array}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CCSD}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} <matplotlib.legend.Legend at 0xb2fd76710>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_2_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Now that you have the raw data, we will interpolate this data using
+cubic splines. This will permit us to estimate the potential energy at
+any arbitrary separation between 0.5 and 2.3 Angstroms (roughly 1 and
+4.3 a.u.) with fairly high confidence, and will also allow us to
+estimate the force (the negative of the derivative of the PES with
+respect to separation) at any separation between 1.0 and 4.3 a.u. since
+the derivative of cubic splines are readily available.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} use cubic spline interpolation}
+        \PY{n}{order} \PY{o}{=} \PY{l+m+mi}{3}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} get separation vector in atomic units}
+        \PY{n}{r\PYZus{}array\PYZus{}au} \PY{o}{=} \PY{l+m+mf}{1.89}\PY{o}{*}\PY{n}{r\PYZus{}array} 
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} spline for RHF Energy}
+        \PY{n}{RHF\PYZus{}E\PYZus{}Spline} \PY{o}{=} \PY{n}{InterpolatedUnivariateSpline}\PY{p}{(}\PY{n}{r\PYZus{}array\PYZus{}au}\PY{p}{,} \PY{n}{HF\PYZus{}E\PYZus{}array}\PY{p}{,} \PY{n}{k}\PY{o}{=}\PY{n}{order}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} spline for MP2 Energy}
+        \PY{n}{MP2\PYZus{}E\PYZus{}Spline} \PY{o}{=} \PY{n}{InterpolatedUnivariateSpline}\PY{p}{(}\PY{n}{r\PYZus{}array\PYZus{}au}\PY{p}{,} \PY{n}{MP2\PYZus{}E\PYZus{}array}\PY{p}{,} \PY{n}{k}\PY{o}{=}\PY{n}{order}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} spline for CCSD Energy}
+        \PY{n}{CCSD\PYZus{}E\PYZus{}Spline} \PY{o}{=} \PY{n}{InterpolatedUnivariateSpline}\PY{p}{(}\PY{n}{r\PYZus{}array\PYZus{}au}\PY{p}{,} \PY{n}{CCSD\PYZus{}E\PYZus{}array}\PY{p}{,} \PY{n}{k}\PY{o}{=}\PY{n}{order}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} form a much finer grid}
+        \PY{n}{r\PYZus{}fine} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{o}{/}\PY{l+m+mf}{0.529}\PY{p}{,}\PY{l+m+mf}{2.3}\PY{o}{/}\PY{l+m+mf}{0.529}\PY{p}{,}\PY{l+m+mi}{200}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} compute the interpolated/extrapolated values for RHF Energy on this grid}
+        \PY{n}{RHF\PYZus{}E\PYZus{}fine} \PY{o}{=} \PY{n}{RHF\PYZus{}E\PYZus{}Spline}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} compute the interpolated/extrapolated values for RHF Energy on this grid}
+        \PY{n}{MP2\PYZus{}E\PYZus{}fine} \PY{o}{=} \PY{n}{MP2\PYZus{}E\PYZus{}Spline}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} compute the interpolated/extrapolated values for RHF Energy on this grid}
+        \PY{n}{CCSD\PYZus{}E\PYZus{}fine} \PY{o}{=} \PY{n}{CCSD\PYZus{}E\PYZus{}Spline}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} plot the interpolated data}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{n}{RHF\PYZus{}E\PYZus{}fine}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{r\PYZus{}array\PYZus{}au}\PY{p}{,} \PY{n}{HF\PYZus{}E\PYZus{}array}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{n}{MP2\PYZus{}E\PYZus{}fine}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{r\PYZus{}array\PYZus{}au}\PY{p}{,} \PY{n}{MP2\PYZus{}E\PYZus{}array}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{n}{CCSD\PYZus{}E\PYZus{}fine}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{r\PYZus{}array\PYZus{}au}\PY{p}{,} \PY{n}{CCSD\PYZus{}E\PYZus{}array}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We can estimate the equilibrium bond length by finding the separation at
+which the potential is minimum; note this would also be the position
+that the force goes to zero:
+
+\begin{equation}
+\frac{d}{dr} V(r_{eq}) = -F(r_{eq}) = 0.
+\end{equation}
+
+First we will compute the forces at each level of theory:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} take the derivative of the potential to get the negative of the force from RHF}
+        \PY{n}{RHF\PYZus{}Force} \PY{o}{=} \PY{n}{RHF\PYZus{}E\PYZus{}Spline}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)} 
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} negative of the force from MP2}
+        \PY{n}{MP2\PYZus{}Force} \PY{o}{=} \PY{n}{MP2\PYZus{}E\PYZus{}Spline}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} negative of the force from CCSD}
+        \PY{n}{CCSD\PYZus{}Force} \PY{o}{=} \PY{n}{CCSD\PYZus{}E\PYZus{}Spline}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} let\PYZsq{}s plot the forces for each level of theory!}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} plot the forces... note we need to multiply by \PYZhy{}1 since the spline}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} derivative gave us the negative of the force!}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{RHF\PYZus{}Force}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{MP2\PYZus{}Force}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{CCSD\PYZus{}Force}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Next we will find where the minimum of the potential energy surfaces are
+and use that to find the equilibrium bond length:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Find Equilibrium Bond\PYZhy{}Lengths for each level of theory}
+        \PY{n}{RHF\PYZus{}Req\PYZus{}idx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{RHF\PYZus{}E\PYZus{}fine}\PY{p}{)}
+        \PY{n}{MP2\PYZus{}Req\PYZus{}idx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{MP2\PYZus{}E\PYZus{}fine}\PY{p}{)}
+        \PY{n}{CCSD\PYZus{}Req\PYZus{}idx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{CCSD\PYZus{}E\PYZus{}fine}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} find the value of the separation corresponding to that index}
+        \PY{n}{RHF\PYZus{}Req} \PY{o}{=} \PY{n}{r\PYZus{}fine}\PY{p}{[}\PY{n}{RHF\PYZus{}Req\PYZus{}idx}\PY{p}{]}
+        \PY{n}{MP2\PYZus{}Req} \PY{o}{=} \PY{n}{r\PYZus{}fine}\PY{p}{[}\PY{n}{MP2\PYZus{}Req\PYZus{}idx}\PY{p}{]}
+        \PY{n}{CCSD\PYZus{}Req} \PY{o}{=} \PY{n}{r\PYZus{}fine}\PY{p}{[}\PY{n}{CCSD\PYZus{}Req\PYZus{}idx}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} print equilibrium bond\PYZhy{}lengths at each level of theory!}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ Equilibrium bond length at RHF/cc\PYZhy{}pVDZ level is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{RHF\PYZus{}Req}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ Equilibrium bond length at MP2/cc\PYZhy{}pVDZ level is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{MP2\PYZus{}Req}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ Equilibrium bond lengthat CCSD/cc\PYZhy{}pVDZ level is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{CCSD\PYZus{}Req}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ Equilibrium bond length at RHF/cc-pVDZ level is  1.6975235344966797 atomic units
+ Equilibrium bond length at MP2/cc-pVDZ level is  1.7317209867864842 atomic units
+ Equilibrium bond lengthat CCSD/cc-pVDZ level is  1.7317209867864842 atomic units
+
+    \end{Verbatim}
+
+    At this point, take a moment to compare your equilibrium bond length
+with other teams who have used different levels of theory to compute
+their potential energy surfaces. Which equilibrium bond length should be
+most trustworthy?
+
+You might have learned that the Harmonic Oscillator potential, which is
+a reasonable model for the vibrational motion of diatomic atomcs near
+their equilibrium bond length, is given by
+
+\begin{equation}
+V(r) = \frac{1}{2} k r^2
+\end{equation}
+
+and that the vibrational frequency of the molecule within the Harmonic
+oscillator model is given by
+
+\begin{equation}
+\nu = \frac{1}{2\pi}\sqrt{\frac{k}{\mu}}
+\end{equation}
+
+where \(\mu\) is the reduced mass of the molecule and \(k\) is known as
+the force constant.\\
+We can estimate the force constant as
+
+\begin{equation}
+k = \frac{d^2}{dr^2} V(r_{eq}).
+\end{equation}
+
+Let's go ahead and get the force constants at each level of theory and
+estimate the potential energy within the Harmonic approximation!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} get second derivative of potential energy curve... recall that we fit a spline to}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} to the first derivative already and called that spline function X\PYZus{}Force, where}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} X is either RHF, MP2, or CCSD}
+        
+        \PY{n}{RHF\PYZus{}Curvature} \PY{o}{=} \PY{n}{RHF\PYZus{}Force}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+        \PY{n}{MP2\PYZus{}Curvature} \PY{o}{=} \PY{n}{MP2\PYZus{}Force}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+        \PY{n}{CCSD\PYZus{}Curvature} \PY{o}{=} \PY{n}{CCSD\PYZus{}Force}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} evaluate the second derivative at r\PYZus{}eq to get k}
+        \PY{n}{RHF\PYZus{}k} \PY{o}{=} \PY{n}{RHF\PYZus{}Curvature}\PY{p}{(}\PY{n}{RHF\PYZus{}Req}\PY{p}{)}
+        \PY{n}{MP2\PYZus{}k} \PY{o}{=} \PY{n}{MP2\PYZus{}Curvature}\PY{p}{(}\PY{n}{MP2\PYZus{}Req}\PY{p}{)}
+        \PY{n}{CCSD\PYZus{}k} \PY{o}{=} \PY{n}{CCSD\PYZus{}Curvature}\PY{p}{(}\PY{n}{CCSD\PYZus{}Req}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Print force constants for each level of theory!}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hartree\PYZhy{}Fock force constant is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{RHF\PYZus{}k}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{MP2 force constant is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{MP2\PYZus{}k}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{CCSD force constant is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{CCSD\PYZus{}k}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} define harmonic potential for each level of theory}
+        \PY{n}{RHF\PYZus{}Harm\PYZus{}Pot} \PY{o}{=} \PY{n}{RHF\PYZus{}k}\PY{o}{*}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{o}{\PYZhy{}}\PY{n}{RHF\PYZus{}Req}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{RHF\PYZus{}E\PYZus{}Spline}\PY{p}{(}\PY{n}{RHF\PYZus{}Req}\PY{p}{)}
+        \PY{n}{MP2\PYZus{}Harm\PYZus{}Pot} \PY{o}{=} \PY{n}{MP2\PYZus{}k}\PY{o}{*}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{o}{\PYZhy{}}\PY{n}{MP2\PYZus{}Req}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{MP2\PYZus{}E\PYZus{}Spline}\PY{p}{(}\PY{n}{MP2\PYZus{}Req}\PY{p}{)}
+        \PY{n}{CCSD\PYZus{}Harm\PYZus{}Pot} \PY{o}{=} \PY{n}{CCSD\PYZus{}k}\PY{o}{*}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{o}{\PYZhy{}}\PY{n}{CCSD\PYZus{}Req}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{CCSD\PYZus{}E\PYZus{}Spline}\PY{p}{(}\PY{n}{CCSD\PYZus{}Req}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} plot!}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{n}{RHF\PYZus{}Harm\PYZus{}Pot}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{n}{MP2\PYZus{}Harm\PYZus{}Pot}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{n}{CCSD\PYZus{}Harm\PYZus{}Pot}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hartree-Fock force constant is  0.7201717151234356  atomic units
+MP2 force constant is  0.642303342116713  atomic units
+CCSD force constant is  0.6393333547805894  atomic units
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    And we can actually estimate the fundamental vibrational frequency of
+the molecule within this model using the force constant and the reduced
+mass of the molecule.
+
+\subsubsection{Question 1: What is the reduced mass of the HF molecule
+in atomic
+units?}\label{question-1-what-is-the-reduced-mass-of-the-hf-molecule-in-atomic-units}
+
+\subsubsection{Question 2: Use your spline fit to the PES of HF to
+estimate the vibrational frequency of HF. Express your number in atomic
+units and also convert to a common spectroscopic unit system of your
+choosing (wavenumbers, nm, microns, Hertz, THz are all acceptable
+choices).}\label{question-2-use-your-spline-fit-to-the-pes-of-hf-to-estimate-the-vibrational-frequency-of-hf.-express-your-number-in-atomic-units-and-also-convert-to-a-common-spectroscopic-unit-system-of-your-choosing-wavenumbers-nm-microns-hertz-thz-are-all-acceptable-choices.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}HE = InterpolatedUnivariateSpline(r\PYZus{}fine, harm\PYZus{}pot, k=order)}
+        \PY{c+c1}{\PYZsh{}HF = \PYZhy{}HE.derivative()}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} define reduced mass of HF as m\PYZus{}H * m\PYZus{}H /(m\PYZus{}F + m\PYZus{}H) where mass is in atomic units (electron mass = 1)}
+        \PY{n}{m\PYZus{}F} \PY{o}{=} \PY{l+m+mf}{34883.}
+        \PY{n}{m\PYZus{}H} \PY{o}{=} \PY{l+m+mf}{1836.}
+        \PY{n}{mu} \PY{o}{=} \PY{p}{(}\PY{n}{m\PYZus{}F} \PY{o}{*} \PY{n}{m\PYZus{}H}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{m\PYZus{}F} \PY{o}{+} \PY{n}{m\PYZus{}H}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} compute the fundamental frequency at each level of theory}
+        \PY{n}{RHF\PYZus{}nu} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{RHF\PYZus{}k}\PY{o}{/}\PY{n}{mu}\PY{p}{)}
+        \PY{n}{MP2\PYZus{}nu} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{MP2\PYZus{}k}\PY{o}{/}\PY{n}{mu}\PY{p}{)}
+        \PY{n}{CCSD\PYZus{}nu} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{CCSD\PYZus{}k}\PY{o}{/}\PY{n}{mu}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} print the values in atomic units!}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vibrational frequency of HF at the RHF/cc\PYZhy{}pVDZ level is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{RHF\PYZus{}nu}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vibrational frequency of HF at the MP2/cc\PYZhy{}pVDZ level is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{MP2\PYZus{}nu}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Vibrational frequency of HF at the CCSD/cc\PYZhy{}pVDZ level is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{CCSD\PYZus{}nu}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Vibrational frequency of HF at the RHF/cc-pVDZ level is  0.003234002356333305  atomic units
+Vibrational frequency of HF at the MP2/cc-pVDZ level is  0.0030541642741115874  atomic units
+Vibrational frequency of HF at the CCSD/cc-pVDZ level is  0.0030470949201703997  atomic units
+
+    \end{Verbatim}
+
+    \subsubsection{Question 3: How does these vibrational frequencies
+compare to the experimental vibrational frequency of
+HF?}\label{question-3-how-does-these-vibrational-frequencies-compare-to-the-experimental-vibrational-frequency-of-hf}
+
+Next, we want to actually simulate the dynamics of the HF molecule on
+this \emph{ab} \emph{initio} potential energy surface. To do so, we need
+to solve Newton's equations of motion subject to some initial condition
+for the position (separation) and momentum (in a relative sense) of the
+particles. Newton's equations can be written
+
+\begin{equation}
+F(r) = \mu \frac{d^2}{dr^2}
+\end{equation}
+
+where \(\mu\) is the reduced mass in atomic units and \(F(r)\) is the
+Force vs separation in atomic units that was determined previously.
+
+\subsubsection{Question 4: What will be the accelation of the bond
+stretch when H is separated by F by 3 atomic units? You can express your
+acceleration in atomic units,
+also.}\label{question-4-what-will-be-the-accelation-of-the-bond-stretch-when-h-is-separated-by-f-by-3-atomic-units-you-can-express-your-acceleration-in-atomic-units-also.}
+
+    If the acceleration, position, and velocity of the bond stretch
+coordinate are known at some instant in time \(t_i\), then the position
+and velocity can be estimated at some later time
+\(t_{i+1} = t_i + \Delta t\):
+
+\begin{equation}
+r(t_i + \Delta t) = r(t_i) + v(t_i)\Delta t + \frac{1}{2}a(t_i)\Delta t^2
+\end{equation}
+
+and
+
+\begin{equation}
+v(t_i + \Delta t) = v(t_i) + \frac{1}{2} \left(a(t_i) + a(t_i + \Delta t)  \right) \Delta t.
+\end{equation}
+
+This prescription for updating the velocities and positions is known as
+the Velocity-Verlet algorithm.\\
+Note that we need to perform 2 force evaluations per Velocity-Verlet
+iteration: one corresponding to position \(r(t_i)\) to update the
+position, and then a second time at the updated position
+\(r(t_i + \Delta t)\) to complete the velocity update.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{def} \PY{n+nf}{Velocity\PYZus{}Verlet}\PY{p}{(}\PY{n}{r\PYZus{}curr}\PY{p}{,} \PY{n}{v\PYZus{}curr}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{f\PYZus{}interp}\PY{p}{,} \PY{n}{dt}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} get acceleration at current time}
+            \PY{n}{a\PYZus{}curr} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{f\PYZus{}interp}\PY{p}{(}\PY{n}{r\PYZus{}curr}\PY{p}{)}\PY{o}{/}\PY{n}{mu}
+            
+            \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} use current acceleration and velocity to update position}
+            \PY{n}{r\PYZus{}fut} \PY{o}{=} \PY{n}{r\PYZus{}curr} \PY{o}{+} \PY{n}{v\PYZus{}curr} \PY{o}{*} \PY{n}{dt} \PY{o}{+} \PY{l+m+mf}{0.5} \PY{o}{*} \PY{n}{a\PYZus{}curr} \PY{o}{*} \PY{n}{dt}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            
+            \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} use r\PYZus{}fut to get future acceleration a\PYZus{}fut}
+            \PY{n}{a\PYZus{}fut} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{f\PYZus{}interp}\PY{p}{(}\PY{n}{r\PYZus{}fut}\PY{p}{)}\PY{o}{/}\PY{n}{mu}
+            \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} use current and future acceleration to get future velocity v\PYZus{}fut}
+            \PY{n}{v\PYZus{}fut} \PY{o}{=} \PY{n}{v\PYZus{}curr} \PY{o}{+} \PY{l+m+mf}{0.5}\PY{o}{*}\PY{p}{(}\PY{n}{a\PYZus{}curr} \PY{o}{+} \PY{n}{a\PYZus{}fut}\PY{p}{)} \PY{o}{*} \PY{n}{dt}
+            
+            \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{n}{r\PYZus{}fut}\PY{p}{,} \PY{n}{v\PYZus{}fut}\PY{p}{]}
+            
+            \PY{k}{return} \PY{n}{result}
+\end{Verbatim}
+
+
+    To be able to define the very first update, an initial position and
+velocity must be specified. Typically, these are chosen at random from a
+sensible range of values.
+
+\subsubsection{Question 5: What makes a "sensible range of values" for
+position and
+velocity?}\label{question-5-what-makes-a-sensible-range-of-values-for-position-and-velocity}
+
+In this case, we will initialize the position to be a random number
+between 1.0 and 4.0; for the velocity, we will use the fact that we can
+estimate the expectation value of kinetic energy for a very similar
+system (the Harmonic oscillator) in the ground state as follows:
+
+\begin{equation}
+\langle T \rangle = \frac{1}{2} E_g,
+\end{equation}
+
+where \(E_g\) is the ground state of the Harmonic oscillator (this is
+making use of the Virial theorem). We can easily find the ground state
+energy in the Harmonic oscillator approximation of \(HF\) using our
+frequency calculation described above as
+
+\begin{equation}
+E_g = \frac{1}{2} h \nu,
+\end{equation}
+
+which implies the kinetic energy expectation value is
+
+\begin{equation}
+\langle T \rangle = \frac{h}{8 \pi} \sqrt{\frac{k}{\mu}}.
+\end{equation}
+
+Since we can say classically that the kinetic energy is given by
+\(T = \frac{1}{2}\mu v^2\), we can estimate the velocity of the bond
+stretch as follows:
+
+\begin{equation}
+v = \sqrt{\frac{2 \langle T \rangle}{\mu}} = \sqrt{ \frac{\hbar \sqrt{\frac{k}{\mu}}}{2\mu}}
+\end{equation}
+
+where we have simplified using the fact that \(\hbar = \frac{h}{2\pi}\)
+(\(\hbar\) has the value 1 in the atomic unit system we are using up to
+this point!). We will assume that a reasonable range of velocities spans
+plus or minus 3 times this "ground-state" velocity.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} define \PYZdq{}ground\PYZhy{}state\PYZdq{} velocity for each level of theory}
+         \PY{n}{v\PYZus{}RHF} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{RHF\PYZus{}k}\PY{o}{/}\PY{n}{mu}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{mu}\PY{p}{)}\PY{p}{)}
+         \PY{n}{v\PYZus{}MP2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{MP2\PYZus{}k}\PY{o}{/}\PY{n}{mu}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{mu}\PY{p}{)}\PY{p}{)}
+         \PY{n}{v\PYZus{}CCSD} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{CCSD\PYZus{}k}\PY{o}{/}\PY{n}{mu}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{mu}\PY{p}{)}\PY{p}{)}
+         
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} get random position and velocity for RHF HF within a reasonable range}
+         \PY{c+c1}{\PYZsh{}r\PYZus{}init = np.random.uniform(0.75*RHF\PYZus{}Req,2*RHF\PYZus{}Req)}
+         \PY{n}{r\PYZus{}init} \PY{o}{=} \PY{n}{RHF\PYZus{}Req}
+         \PY{n}{v\PYZus{}init} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{v\PYZus{}RHF}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{v\PYZus{}RHF}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} print initial position and velocity}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Initial separation is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{r\PYZus{}init}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Initial velocity is   }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{v\PYZus{}init}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} get initial force on the particle based on its separation}
+         \PY{n}{RHF\PYZus{}F\PYZus{}init} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{RHF\PYZus{}Force}\PY{p}{(}\PY{n}{r\PYZus{}init}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Initial Force is }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{RHF\PYZus{}F\PYZus{}init}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{atomic units}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Initial separation is  1.6975235344966797 atomic units
+Initial velocity is    -0.00472954841024506 atomic units
+Initial Force is  -0.00032337562265599695 atomic units
+
+    \end{Verbatim}
+
+    \subsubsection{Validating Velocity-Verlet algorithm with the Harmonic
+Oscillator}\label{validating-velocity-verlet-algorithm-with-the-harmonic-oscillator}
+
+Newton's equation of motion can be solved analytically for the Harmonic
+oscillator, and we can use this fact to validate our Velocity-Verlet
+algorithm (which provides an \emph{approximate} solution to Newton's
+equation of motion for arbitrary potentials). That is, the vibrational
+motion of a diatomic subject to a Harmonic potential predicted by the
+Velocity-Verlet algorithm should closely match the analytical solution.
+If the diatomic is initially at its equilibrium bond length
+(\(r(0) = r_{eq})\), then the bond-length at subsequent times can be
+written exactly as
+
+\begin{equation}
+r(t) = \sqrt{\frac{\mu}{k}} v_0 {\rm sin}\left(\sqrt{\frac{k}{\mu}} t\right) + r_{eq}.
+\end{equation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{def} \PY{n+nf}{harmonic\PYZus{}position}\PY{p}{(}\PY{n}{k\PYZus{}val}\PY{p}{,} \PY{n}{mu\PYZus{}val}\PY{p}{,} \PY{n}{v0\PYZus{}val}\PY{p}{,} \PY{n}{r\PYZus{}eq\PYZus{}val}\PY{p}{,} \PY{n}{time}\PY{p}{)}\PY{p}{:}
+             \PY{n}{f1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{mu\PYZus{}val}\PY{o}{/}\PY{n}{k\PYZus{}val}\PY{p}{)}
+             \PY{n}{f2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{k\PYZus{}val}\PY{o}{/}\PY{n}{mu\PYZus{}val}\PY{p}{)}
+             \PY{k}{return} \PY{n}{f1} \PY{o}{*} \PY{n}{v0\PYZus{}val} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(} \PY{n}{f2} \PY{o}{*} \PY{n}{time} \PY{p}{)} \PY{o}{+} \PY{n}{r\PYZus{}eq\PYZus{}val}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} how many updates do you want to perform?}
+         \PY{n}{N\PYZus{}updates} \PY{o}{=} \PY{l+m+mi}{50000}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} establish time\PYZhy{}step for integration to be 0.02 atomic units... this is about 0.0005 femtoseconds}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} so total time is 200000*0.02 atomic units of time which is \PYZti{}9.6e\PYZhy{}13 s, or 960 fs}
+         \PY{n}{dt} \PY{o}{=} \PY{l+m+mf}{0.001}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} harmonic results}
+         \PY{n}{hr\PYZus{}vs\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         \PY{n}{hv\PYZus{}vs\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         \PY{n}{ar\PYZus{}vs\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         \PY{n}{t\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         \PY{n}{hr\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{RHF\PYZus{}Req}
+         \PY{n}{hv\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{v\PYZus{}init}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Let\PYZsq{}s get the RHF Harmonic Force Spline}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} use cubic spline interpolation}
+         \PY{n}{order} \PY{o}{=} \PY{l+m+mi}{3}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} spline for RHF Energy}
+         \PY{n}{RHF\PYZus{}Harm\PYZus{}Pot\PYZus{}Spline} \PY{o}{=} \PY{n}{InterpolatedUnivariateSpline}\PY{p}{(}\PY{n}{r\PYZus{}fine}\PY{p}{,} \PY{n}{RHF\PYZus{}Harm\PYZus{}Pot}\PY{p}{,} \PY{n}{k}\PY{o}{=}\PY{n}{order}\PY{p}{)}
+         \PY{n}{RHF\PYZus{}Harm\PYZus{}Force} \PY{o}{=} \PY{n}{RHF\PYZus{}Harm\PYZus{}Pot\PYZus{}Spline}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} first Velocity Verlet update}
+         \PY{n}{result\PYZus{}array} \PY{o}{=} \PY{n}{Velocity\PYZus{}Verlet}\PY{p}{(}\PY{n}{r\PYZus{}init}\PY{p}{,} \PY{n}{v\PYZus{}init}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{RHF\PYZus{}Harm\PYZus{}Force}\PY{p}{,} \PY{n}{dt}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}hresult\PYZus{}array = Velocity\PYZus{}Verlet(r\PYZus{}init, v\PYZus{}init, mu, HF, dt)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{result\PYZus{}array}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(hresult\PYZus{}array)}
+         \PY{n}{ar\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{harmonic\PYZus{}position}\PY{p}{(}\PY{n}{RHF\PYZus{}k}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{v\PYZus{}init}\PY{p}{,} \PY{n}{RHF\PYZus{}Req}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} do the update N\PYZus{}update\PYZhy{}1 more times}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{N\PYZus{}updates}\PY{p}{)}\PY{p}{:}
+             \PY{n}{tmp} \PY{o}{=} \PY{n}{Velocity\PYZus{}Verlet}\PY{p}{(}\PY{n}{result\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{result\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{RHF\PYZus{}Harm\PYZus{}Force}\PY{p}{,} \PY{n}{dt}\PY{p}{)}
+             \PY{n}{result\PYZus{}array} \PY{o}{=} \PY{n}{tmp}
+             \PY{n}{t\PYZus{}array}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{dt}\PY{o}{*}\PY{n}{i}
+             \PY{n}{hr\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{result\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{hv\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{result\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{ar\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{harmonic\PYZus{}position}\PY{p}{(}\PY{n}{RHF\PYZus{}k}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{v\PYZus{}init}\PY{p}{,} \PY{n}{RHF\PYZus{}Req}\PY{p}{,} \PY{n}{dt}\PY{o}{*}\PY{n}{i}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}tmp = Velocity\PYZus{}Verlet(hresult\PYZus{}array[0], hresult\PYZus{}array[1], mu, HF, dt)}
+             \PY{c+c1}{\PYZsh{}hr\PYZus{}vs\PYZus{}t[i] = hresult\PYZus{}array[0]}
+             \PY{c+c1}{\PYZsh{}hv\PYZus{}vs\PYZus{}t[i] = hresult\PYZus{}array[1]}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Plot the trajectory of bondlength vs time:}
+         \PY{c+c1}{\PYZsh{}plt.plot(t\PYZus{}array, r\PYZus{}vs\PYZus{}t, \PYZsq{}red\PYZsq{}, t\PYZus{}array, hr\PYZus{}vs\PYZus{}t, \PYZsq{}blue\PYZsq{})}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t\PYZus{}array}\PY{p}{,} \PY{n}{hr\PYZus{}vs\PYZus{}t}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{t\PYZus{}array}\PY{p}{,} \PY{n}{ar\PYZus{}vs\PYZus{}t}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} plot the phase space trajectory of position vs momentum}
+         \PY{c+c1}{\PYZsh{}plt.plot(mu*v\PYZus{}vs\PYZus{}t, r\PYZus{}vs\PYZus{}t, \PYZsq{}blue\PYZsq{}, mu*hv\PYZus{}vs\PYZus{}t, hr\PYZus{}vs\PYZus{}t, \PYZsq{}purple\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}plt.show()}
+             
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1.6975188049482695, -0.004729548408292249]
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(} \PY{n}{t\PYZus{}array}\PY{p}{,} \PY{n}{ar\PYZus{}vs\PYZus{}t}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Now that we have our initial conditions chosen, our force as a function
+of separation known, and our Velocity Verlet function completed, we are
+ready to run our simulations!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} how many updates do you want to perform?}
+         \PY{n}{N\PYZus{}updates} \PY{o}{=} \PY{l+m+mi}{200000}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} establish time\PYZhy{}step for integration to be 0.02 atomic units... this is about 0.0005 femtoseconds}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} so total time is 200000*0.02 atomic units of time which is \PYZti{}9.6e\PYZhy{}13 s, or 960 fs}
+         \PY{n}{dt} \PY{o}{=} \PY{l+m+mf}{0.02}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Now use r\PYZus{}init and v\PYZus{}init and run velocity verlet update N\PYZus{}updates times, plot results}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} these arrays will store the time, the position vs time, and the velocity vs time}
+         \PY{n}{r\PYZus{}vs\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         \PY{n}{v\PYZus{}vs\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         \PY{n}{t\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} harmonic results}
+         \PY{n}{hr\PYZus{}vs\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         \PY{n}{hv\PYZus{}vs\PYZus{}t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{N\PYZus{}updates}\PY{p}{)}
+         
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} first entry is the intial position and velocity}
+         \PY{n}{r\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{r\PYZus{}init}
+         \PY{n}{v\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{v\PYZus{}init}
+         
+         \PY{n}{hr\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{r\PYZus{}init}
+         \PY{n}{hv\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{v\PYZus{}init}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} first Velocity Verlet update}
+         \PY{n}{result\PYZus{}array} \PY{o}{=} \PY{n}{Velocity\PYZus{}Verlet}\PY{p}{(}\PY{n}{r\PYZus{}init}\PY{p}{,} \PY{n}{v\PYZus{}init}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{RHF\PYZus{}Force}\PY{p}{,} \PY{n}{dt}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}hresult\PYZus{}array = Velocity\PYZus{}Verlet(r\PYZus{}init, v\PYZus{}init, mu, HF, dt)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{result\PYZus{}array}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(hresult\PYZus{}array)}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} do the update N\PYZus{}update\PYZhy{}1 more times}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{N\PYZus{}updates}\PY{p}{)}\PY{p}{:}
+             \PY{n}{tmp} \PY{o}{=} \PY{n}{Velocity\PYZus{}Verlet}\PY{p}{(}\PY{n}{result\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{result\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{RHF\PYZus{}Force}\PY{p}{,} \PY{n}{dt}\PY{p}{)}
+             \PY{n}{result\PYZus{}array} \PY{o}{=} \PY{n}{tmp}
+             \PY{n}{t\PYZus{}array}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{dt}\PY{o}{*}\PY{n}{i}
+             \PY{n}{r\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{result\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{v\PYZus{}vs\PYZus{}t}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{result\PYZus{}array}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{}tmp = Velocity\PYZus{}Verlet(hresult\PYZus{}array[0], hresult\PYZus{}array[1], mu, HF, dt)}
+             \PY{c+c1}{\PYZsh{}hr\PYZus{}vs\PYZus{}t[i] = hresult\PYZus{}array[0]}
+             \PY{c+c1}{\PYZsh{}hv\PYZus{}vs\PYZus{}t[i] = hresult\PYZus{}array[1]}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Plot the trajectory of bondlength vs time:}
+         \PY{c+c1}{\PYZsh{}plt.plot(t\PYZus{}array, r\PYZus{}vs\PYZus{}t, \PYZsq{}red\PYZsq{}, t\PYZus{}array, hr\PYZus{}vs\PYZus{}t, \PYZsq{}blue\PYZsq{})}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t\PYZus{}array}\PY{p}{,} \PY{n}{r\PYZus{}vs\PYZus{}t}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} plot the phase space trajectory of position vs momentum}
+         \PY{c+c1}{\PYZsh{}plt.plot(mu*v\PYZus{}vs\PYZus{}t, r\PYZus{}vs\PYZus{}t, \PYZsq{}blue\PYZsq{}, mu*hv\PYZus{}vs\PYZus{}t, hr\PYZus{}vs\PYZus{}t, \PYZsq{}purple\PYZsq{})}
+         \PY{c+c1}{\PYZsh{}plt.show()}
+             
+             
+             
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[2.4722356719182224, -2.9065006058490773e-05]
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
