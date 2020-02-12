@@ -1,7 +1,7 @@
 ---
 title: "Force Constant for Harmonic Potential"
-teaching: 0
-exercises: 0
+teaching: 15 minutes
+exercises: 15 minutes
 questions:
 - "How do we define the potential within the Harmonic approxmation?"
 objectives:
