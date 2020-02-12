@@ -1,7 +1,7 @@
 ---
 title: "_ab_ _initio_ potential energy surface"
-teaching: 0
-exercises: 0
+teaching: 15 minutes
+exercises: 15 minutes
 questions:
 - "How do we obtain realistic intramolecular forces?"
 objectives:
