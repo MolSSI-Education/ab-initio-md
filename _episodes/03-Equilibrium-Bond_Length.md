@@ -1,7 +1,7 @@
 ---
 title: "Finding the equilibrium bond length"
-teaching: 0
-exercises: 0
+teaching: 5 minutes
+exercises: 10 minutes
 questions:
 - "How do we find the equilibrium bond length of our diatomic molecule?"
 objectives:
