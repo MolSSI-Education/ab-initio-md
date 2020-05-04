@@ -17,6 +17,12 @@ keypoints:
  <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 {% include links.md %}
 
+## The force constant
+
+The force constant is defined as the second derivative of the potential energy surface evaluated at the minimum.
+
+$$ k = \frac{d^2}{dr^2} V(r_{eq})$$.
+
 ```
 ### get second derivative of potential energy curve... recall that we fit a spline to
 ### to the first derivative already and called that spline function X_Force, where
