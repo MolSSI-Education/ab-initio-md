@@ -24,7 +24,7 @@ and that the vibrational frequency of the molecule within the Harmonic oscillato
 
 $$ \nu = \frac{1}{2\pi}\sqrt{\frac{k}{\mu}} $$
 
-where $$\mu$$ is the reduced mass of the molecule and $$k$$ is known as the force constant, which as we saw 
+where $$ \mu $$ is the reduced mass of the molecule and $$ k $$ is known as the force constant, which as we saw 
 in the previous lesson can be defined as
 
 $$ k = \frac{d^2}{dr^2} V(r_{eq}).$$
@@ -32,7 +32,7 @@ $$ k = \frac{d^2}{dr^2} V(r_{eq}).$$
 The reduced mass of HF is defined as
 $$ \mu = \frac{m_H \cdot m_F}{m_H + m_F}, $$
 
-where $$m_H$$ and $$m_F$$ are the masses of Hydrogen and Fluoride, respectively.
+where $$ m_H $$ and $$ m_F $$ are the masses of Hydrogen and Fluoride, respectively.
 
 Let's go ahead and get the force constants at each level of theory, print the values, and estimate the potential energy within the Harmonic approximation! Just like we were able to differentiate our PES splines to get a force spline, we can differentiate a force splines to get curvature splines (which we can call RHF_Curvature, MP2_Curvature, and CCSD_Curvature); the force constant will then be the curvature evaluated at the equlibrium bond length.
 
