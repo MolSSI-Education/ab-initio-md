@@ -1,4 +1,20 @@
+---
+title: "Velocity Verlet Algorithm"
+teaching: 0
+exercises: 0
+questions:
+- "How do we practically solve Newton's equations of motion?"
+objectives:
+- "To Demonstrate the implementation of the Velocity-Verlet algorithm."
+keypoints:
+- "Velocity-Verlet algorithm provides a simple and stable numerical solution to Newton's equations of motion.  We can validate our implementation against the exactly-solvable dynamics of a classical harmonic oscillator."
+---
 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+ <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 Validating Velocity-Verlet algorithm with the Harmonic Oscillator
 Newton's equation of motion can be solved analytically for the Harmonic oscillator, and we can use this fact to validate our Velocity-Verlet algorithm (which provides an approximate solution to Newton's equation of motion for arbitrary potentials). That is, the vibrational motion of a diatomic subject to a Harmonic potential predicted by the Velocity-Verlet algorithm should closely match the analytical solution. Analytically, the bond length as a function of time for a diatomic experiencing a harmonic potential is given by$$
 r(t) = A \: {\rm sin}\left(\sqrt{\frac{k}{\mu}} t + \phi \right) + r_{eq},
