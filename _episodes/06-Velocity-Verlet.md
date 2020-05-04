@@ -74,8 +74,6 @@ $$ v(0) = A \: \sqrt{\frac{k}{\mu}} {\rm cos}\left( \phi \right).  $$
 
 Let's define a function harmonicposition that takes arguments of $$ \sqrt{\frac{k}{\mu}} $$ (om), $$ A $$ (amp), $$ \phi $$ (phase), $$ r_{eq} $$ (req), and time (t), and returns the separation.
 
-{% include links.md %}
-
 ```
 ''' Students will write this! '''
 def harmonic_position(om, Amp, phase, req, time):   
