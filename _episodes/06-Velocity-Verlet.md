@@ -36,6 +36,7 @@ We will create a function called Velocity_Verlet that takes the arguments r_curr
 ```
 
 def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
+    
     ### get acceleration at current time
     a_curr = -1*f_interp(r_curr)/mu
     
@@ -50,5 +51,7 @@ def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
     result = [r_fut, v_fut]
     
     return result
+    
     ```
+    
     {: .language-python}
