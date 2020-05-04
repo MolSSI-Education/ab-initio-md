@@ -51,8 +51,8 @@ plt.show()
 ```
 {: .language-python}
 
-## The "force field"
+## The force constant
 
-As stated above, all computational simulations depend on a mathematical model to describe the molecule. The full expression of this model is often called a **force field**  and is a function which describes the potential energy of a system. This force field describes the energy associated with molecular movements such as bond stretching, angle bending, or dihedral angle rotation. If you are a chemistry student, you have likely discussed many of these molecular motions in your classes (who can forget talking about the cis-trans isomerism of butane in organic chemistry class?). The force field describes the energies associated with these movements mathematically. The potential energy is commonly represented by the letter $$U$$, and the total potential energy or "force field" is the sum of terms related to bond stretching, angle bending, torsional rotation (that cis-trans isomerism), electrostatic interaction, and nonbonded Van der Waals interactions.
+The force constant is defined as the second derivative of the potential energy surface evaluated at the minimum
 
-$$ U = U_{bond} + U_{angle} + U_{torsion} + U_{elec} + U_{vdw} $$
+$$ k = \frac{d^2}{dr^2} V(r_{eq})$$
