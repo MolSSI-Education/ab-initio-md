@@ -107,7 +107,9 @@ plt.show()
 ```
 {: .language-python}
 
-Next, we can compute the forces!
+Next, we can compute the forces!  Recall that the force comes from the negative derivative of the potential,
+
+$$ F(r) = -\frac{d}{dr} V(r). $$
 
 ```
 ### take the derivative of the potential to get the negative of the force from RHF
