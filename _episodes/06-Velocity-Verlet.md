@@ -55,11 +55,11 @@ We will create a function called Velocity_Verlet that takes the arguments r_curr
     
     return result
     
-    ```
+```
+{: .language-python}
     
-    {: .language-python}
-    
-    Validating Velocity-Verlet algorithm with the Harmonic Oscillator
+
+Validating Velocity-Verlet algorithm with the Harmonic Oscillator
 Newton's equation of motion can be solved analytically for the Harmonic oscillator, and we can use this fact to validate our Velocity-Verlet algorithm (which provides an approximate solution to Newton's equation of motion for arbitrary potentials). That is, the vibrational motion of a diatomic subject to a Harmonic potential predicted by the Velocity-Verlet algorithm should closely match the analytical solution. Analytically, the bond length as a function of time for a diatomic experiencing a harmonic potential is given by
 
 $$ r(t) = A \: {\rm sin}\left(\sqrt{\frac{k}{\mu}} t + \phi \right) + r_{eq}, $$
@@ -77,7 +77,6 @@ Let's define a function harmonicposition that takes arguments of $$ \sqrt{\frac{
 {% include links.md %}
 
 ```
-
 ''' Students will write this! '''
 def harmonic_position(om, Amp, phase, req, time):   
     return  Amp * np.sin( om * time + phase ) + req
