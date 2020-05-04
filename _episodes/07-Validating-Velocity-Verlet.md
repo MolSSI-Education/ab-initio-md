@@ -17,6 +17,7 @@ keypoints:
  <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 Validating Velocity-Verlet algorithm with the Harmonic Oscillator
 Newton's equation of motion can be solved analytically for the Harmonic oscillator, and we can use this fact to validate our Velocity-Verlet algorithm (which provides an approximate solution to Newton's equation of motion for arbitrary potentials). That is, the vibrational motion of a diatomic subject to a Harmonic potential predicted by the Velocity-Verlet algorithm should closely match the analytical solution. Analytically, the bond length as a function of time for a diatomic experiencing a harmonic potential is given by
+
 $$ r(t) = A \: {\rm sin}\left(\sqrt{\frac{k}{\mu}} t + \phi \right) + r_{eq}, $$
 
 where 
