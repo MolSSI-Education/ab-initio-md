@@ -17,7 +17,7 @@ keypoints:
  <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 
 ### Numerically solving Newton's equation of motion
-If the acceleration, position, and velocity of the bond stretch coordinate are known at some instant in time $t_i$, then the position and velocity can be estimated at some later time $$t_{i+1} = t_i + \Delta t$$:
+If the acceleration, position, and velocity of the bond stretch coordinate are known at some instant in time $$ t_i $$, then the position and velocity can be estimated at some later time $$ t_{i+1} = t_i + \Delta t $$:
 
 $$ r(t_i + \Delta t) = r(t_i) + v(t_i)\Delta t + \frac{1}{2}a(t_i)\Delta t^2 $$
 
