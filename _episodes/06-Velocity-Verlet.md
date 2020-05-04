@@ -36,91 +36,14 @@ Newton's equation of motion can be solved analytically for the Harmonic oscillat
 $$ r(t) = A \: {\rm sin}\left(\sqrt{\frac{k}{\mu}} t + \phi \right) + r_{eq}, $$
 
 
-{% include links.md %}
+where 
 
-```
+$$ A = \frac{r(0)}{{\rm sin}(\phi)} $$, 
 
-def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
-    
-    ### get acceleration at current time
-    a_curr = -1*f_interp(r_curr)/mu
-    
-    ### use current acceleration and velocity to update position
-    r_fut = r_curr + v_curr * dt + 0.5 * a_curr * dt**2
-    
-    ### use r_fut to get future acceleration a_fut
-    a_fut = -1*f_interp(r_fut)/mu
-    ### use current and future acceleration to get future velocity v_fut
-    v_fut = v_curr + 0.5*(a_curr + a_fut) * dt
-    
-    result = [r_fut, v_fut]
-    
-    return result
-    
-''' Students will write this! '''
-def harmonic_position(om, Amp, phase, req, time):   
-    return  Amp * np.sin( om * time + phase ) + req
-    
+$$ r(0) $$ is the initial separation, and $$ \phi $$ is the initial phase of the cycle; note that corresponding to this initial separation is an initial velocity given by
 
-''' This will be pre-written! '''
-### how many updates do you want to perform?
-N_updates = 10000
+$$ v(0) = A \: \sqrt{\frac{k}{\mu}} {\rm cos}\left( \phi \right).  $$
 
-### establish time-step for integration to be 0.02 atomic units... this is about 0.0005 femtoseconds
-### so total time is 200000*0.02 atomic units of time which is ~9.6e-13 s, or 960 fs
-dt = 0.1
+Let's define a function harmonicposition that takes arguments of $$ \sqrt{\frac{k}{\mu}} $$ (om), $$ A $$ (amp), $$ \phi $$ (phase), $$ r_{eq} $$ (req), and time (t), and returns the separation.
 
-### results from VV algorithm
-hr_vs_t = np.zeros(N_updates)
-hv_vs_t = np.zeros(N_updates)
-### analytic result for r(t)
-ar_vs_t = np.zeros(N_updates)
-### array to store time in atomic units
-t_array = np.zeros(N_updates)
-
-### establish some constants relevant for analytic solution
-### harmonic freq
-om = np.sqrt(RHF_k/mu)
-### initial displacement 
-x0 = 0.2
-### amplitude for analytic solution
-Amp = x0/(np.sin(np.pi/4))
-### initial velocity
-v0 = Amp * om * np.cos(np.pi/4)
-
-hr_vs_t[0] = RHF_Req+x0
-hv_vs_t[0] = v0
-
-### We need a spline object for the harmonic force to pass to the Velocity Verlet algorithm,
-### let's get that now!
-### spline for Harmonic potential using RHF_k
-RHF_Harm_Pot_Spline = InterpolatedUnivariateSpline(r_fine, RHF_Harm_Pot, k=3)
-### RHF harmonic force
-RHF_Harm_Force = RHF_Harm_Pot_Spline.derivative()
-
-
-### first Velocity Verlet update
-result_array = Velocity_Verlet(hr_vs_t[0], hv_vs_t[0], mu, RHF_Harm_Force, dt)
-### first analytic result
-ar_vs_t[0] = harmonic_position(om, Amp, np.pi/4, RHF_Req, 0)
-### do the update N_update-1 more times
-for i in range(1,N_updates):
-    ### store current time
-    t_array[i] = dt*i
-    ### Compute VV update
-    result_array = Velocity_Verlet(result_array[0], result_array[1], mu, RHF_Harm_Force, dt)
-    ### store results from VV update
-    hr_vs_t[i] = result_array[0]
-    hv_vs_t[i] = result_array[1]
-    ### compute and store results from analytic solution
-    ar_vs_t[i] = harmonic_position(om, Amp, np.pi/4, RHF_Req, dt*i)
-
-### Plot result and compare!
-plt.plot(t_array, hr_vs_t, 'red', label="Velocity Verlet")
-plt.plot(t_array, ar_vs_t, 'b--', label="Analytic")
-plt.legend()
-plt.show()
-    
-```
-{: .language-python}
 
