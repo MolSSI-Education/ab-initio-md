@@ -49,10 +49,7 @@ Let's define a function harmonicposition that takes arguments of $$ \sqrt{\frac{
 
 ```
 
-  ''' Function that implements the Velocity-Verlet Algorithm '''
-  
-  
-  def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
+def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
     
     ### get acceleration at current time
     a_curr = -1*f_interp(r_curr)/mu
@@ -69,12 +66,10 @@ Let's define a function harmonicposition that takes arguments of $$ \sqrt{\frac{
     
     return result
     
-    ```
 ''' Students will write this! '''
 def harmonic_position(om, Amp, phase, req, time):   
     return  Amp * np.sin( om * time + phase ) + req
     
-The following code block will call the Velocity Verlet algorithm using the RHF Harmonic potential 10,000 times with a timestep of 0.1 atomic units per timestep and will compare the resulting trajectory of bond length vs time (all in atomic units) to the analytic result for the Harmonic oscillator; we will initiate the bond length as being 0.2 atomic units longer than $r_eq$ with an initial phase of $\frac{\pi}{4}$.
 
 ''' This will be pre-written! '''
 ### how many updates do you want to perform?
