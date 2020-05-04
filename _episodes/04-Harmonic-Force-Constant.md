@@ -10,6 +10,11 @@ keypoints:
 - "Each level of theory has a unique potential energy curve and might be expected to give a unique force constant."
 ---
 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+ <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 {% include links.md %}
 
 ```
