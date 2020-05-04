@@ -53,6 +53,6 @@ plt.show()
 
 ## The force constant
 
-The force constant is defined as the second derivative of the potential energy surface evaluated at the minimum
+The force constant is defined as the second derivative of the potential energy surface evaluated at the minimum.
 
 $$ k = \frac{d^2}{dr^2} V(r_{eq})$$
