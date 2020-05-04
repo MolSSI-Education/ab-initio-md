@@ -35,7 +35,6 @@ Newton's equation of motion can be solved analytically for the Harmonic oscillat
 
 $$ r(t) = A \: {\rm sin}\left(\sqrt{\frac{k}{\mu}} t + \phi \right) + r_{eq}, $$
 
-
 where 
 
 $$ A = \frac{r(0)}{{\rm sin}(\phi)} $$, 
