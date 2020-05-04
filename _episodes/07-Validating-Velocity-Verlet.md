@@ -24,6 +24,10 @@ $$
 
 Let's define a function harmonicposition that takes arguments of $\sqrt{\frac{k}{\mu}}$ (om), $A$ (amp), $\phi$ (phase), $r&lt;/em&gt;{eq}$ (req), and time (t), and returns the separation.
 
+{% include links.md %}
+
+```
+
 ''' Students will write this! '''
 def harmonic_position(om, Amp, phase, req, time):   
     return  Amp * np.sin( om * time + phase ) + req
@@ -88,3 +92,6 @@ plt.plot(t_array, hr_vs_t, 'red', label="Velocity Verlet")
 plt.plot(t_array, ar_vs_t, 'b--', label="Analytic")
 plt.legend()
 plt.show()
+    
+```
+{: .language-python}
