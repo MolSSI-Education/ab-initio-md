@@ -31,7 +31,7 @@ Note that we need to perform 2 force evaluations per Velocity-Verlet iteration: 
 We will create a function called Velocity_Verlet that takes the arguments r_curr, v_curr, mu, force_spline, and timestep and returns a 2-element array containing the updated position (r) and velocity (v) value.
 
 ### Validating Velocity-Verlet algorithm with the Harmonic Oscillator
-Newton's equation of motion can be solved analytically for the Harmonic oscillator, and we can use this fact to validate our Velocity-Verlet algorithm (which provides an approximate solution to Newton's equation of motion for arbitrary potentials). That is, the vibrational motion of a diatomic subject to a Harmonic potential predicted by the Velocity-Verlet algorithm should closely match the analytical solution. Analytically, the bond length as a function of time for a diatomic experiencing a harmonic potential is given by
+Newton's equation of motion can be solved analytically for the Harmonic oscillator, and we can use this fact to validate our Velocity-Verlet algorithm. That is, the vibrational motion of a diatomic subject to a Harmonic potential predicted by the Velocity-Verlet algorithm should closely match the analytical solution. Analytically, the bond length as a function of time for a diatomic experiencing a harmonic potential is given by
 
 $$ r(t) = A \: {\rm sin}\left(\sqrt{\frac{k}{\mu}} t + \phi \right) + r_{equ} $$ where $$ A = \frac{r(0)}{{\rm sin}(\phi)} $$, 
 $$ r(0) $$ is the initial separation, and $$ \phi $$ is the initial phase of the cycle; note that corresponding to this initial separation is an initial velocity given by
