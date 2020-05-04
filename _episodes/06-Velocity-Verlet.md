@@ -10,6 +10,27 @@ keypoints:
 - "Velocity-Verlet algorithm provides a simple and stable numerical solution to Newton's equations of motion.  We can validate our implementation against the exactly-solvable dynamics of a classical harmonic oscillator."
 ---
 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+ <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
+
+### Numerically solving Newton's equation of motion
+If the acceleration, position, and velocity of the bond stretch coordinate are known at some instant in time $t_i$, then the position and velocity can be estimated at some later time $$t_{i+1} = t_i + \Delta t$$:
+
+$$ r(t_i + \Delta t) = r(t_i) + v(t_i)\Delta t + \frac{1}{2}a(t_i)\Delta t^2 $$
+
+and
+
+$$ v(t_i + \Delta t) = v(t_i) + \frac{1}{2} \left(a(t_i) + a(t_i + \Delta t)  \right) \Delta t. $$
+
+This prescription for updating the velocities and positions is known as the Velocity-Verlet algorithm.
+Note that we need to perform 2 force evaluations per Velocity-Verlet iteration: one corresponding to position $$ r(t_i) $$ to update the position, and then a second time at the updated position $$ r(t_i + \Delta t) $$ to complete the velocity update.
+
+We will create a function called Velocity_Verlet that takes the arguments r_curr, v_curr, mu, force_spline, and timestep and returns a 2-element array containing the updated position (r) and velocity (v) value.
+
+
 {% include links.md %}
 
 ```
