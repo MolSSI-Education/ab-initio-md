@@ -34,7 +34,7 @@ We will create a function called Velocity_Verlet that takes the arguments r_curr
 {% include links.md %}
 
 ```
-
+### Function that implements the Velocity-Verlet Algorithm
 def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
     
     ### get acceleration at current time
