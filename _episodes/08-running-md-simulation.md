@@ -10,6 +10,9 @@ keypoints:
 - "The direct output of a molecular dynamics simulation are the positions and velocities/momenta of the atoms being studied."
 ---
 
+Finally, let's simulate the vibrational motion of HF subject to the *ab* *initio* forces we computed earlier and compare them to the Harmonic motion; recall we have already obtained spline objects for RHF, MP2, and CCSD forces called RHF_Force, MP2_Force, and CCSD_Force!
+We will also initialize the simulations using the same values as we did with the Harmonic case to aid our comparison.
+
 ```
 ### how many updates do you want to perform?
 N_updates = 200000
