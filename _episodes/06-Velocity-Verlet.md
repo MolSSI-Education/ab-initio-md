@@ -17,6 +17,8 @@ keypoints:
  <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 
 ### Numerically solving Newton's equation of motion
+Now that we have a spline for the interparticle force and the reduced mass of the HF molecule, we are ready to solve Newton's equation of motion for this system! As we will see, if the potential is Harmonic (meaning the force is the linear restoring force known from Hook's law), Newton's equation can be solved exactly.  Our _ab_ _initio_ force is not exactly Harmonic, so we must rely on a numerical solution to Newton's equation.  
+
 If the acceleration, position, and velocity of the bond stretch coordinate are known at some instant in time $$ t_i $$, then the position and velocity can be estimated at some later time $$ t_{i+1} = t_i + \Delta t $$:
 
 $$ r(t_i + \Delta t) = r(t_i) + v(t_i)\Delta t + \frac{1}{2}a(t_i)\Delta t^2 $$
@@ -49,7 +51,7 @@ We will also define a function called `harmonic_position` that takes arguments o
 {% include links.md %}
 
 ```
-
+### Function that implements the Velocity-Verlet algorithm
 def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
     
     ### get acceleration at current time
@@ -67,12 +69,16 @@ def Velocity_Verlet(r_curr, v_curr, mu, f_interp, dt):
     
     return result
     
-''' Students will write this! '''
+### Function that evaluates the analytic solution to Newton's Equation for the Harmonic Oscillator
 def harmonic_position(om, Amp, phase, req, time):   
     return  Amp * np.sin( om * time + phase ) + req
     
 
-''' This will be pre-written! '''
+### Block of code to simulate the motion of HF within the Harmonic approximation 
+### with the Velocity-Verlet algorithm, and also to evaluate the analytical solution.
+### Plotting the results of both helps us to validate our implementation of the Velocity-Verlet 
+### algorithm since the two should agree!
+
 ### how many updates do you want to perform?
 N_updates = 10000
 
@@ -80,11 +86,13 @@ N_updates = 10000
 ### so total time is 200000*0.02 atomic units of time which is ~9.6e-13 s, or 960 fs
 dt = 0.1
 
-### results from VV algorithm
+### arrays to store the results from VV algorithm
 hr_vs_t = np.zeros(N_updates)
 hv_vs_t = np.zeros(N_updates)
-### analytic result for r(t)
+
+### arrays to store the analytic results for r(t)
 ar_vs_t = np.zeros(N_updates)
+
 ### array to store time in atomic units
 t_array = np.zeros(N_updates)
 
