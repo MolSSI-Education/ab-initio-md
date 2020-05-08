@@ -1,7 +1,7 @@
 ---
 title: "Running the molecular dynamics simulation!"
-teaching: 0
-exercises: 0
+teaching: 20
+exercises: 30
 questions:
 - "What does the molecular dynamics simulation tell us?"
 objectives:
