@@ -18,12 +18,13 @@ keypoints:
 ### For further consideration: What makes a "sensible range of values" for position and velocity?
 
 
-In this case, we will initialize the position to be a random number between 1.0 and 4.0; for the velocity, we will use the fact that we can estimate the expectation value of kinetic energy for a very similar system (the Harmonic oscillator) in the ground state as follows:
+Since we have only computed the potential energy surface between around 1 and 4 atomic units, that provides a reasonable 
+bound on the random initial positions we will choose.  The question remains what represents a suitable range of values for the initial velocity?  One strategy is to use the fact that we can estimate the expectation value of kinetic energy for a very similar system (the Harmonic oscillator) in the ground state as follows:
 \begin{equation}
 \langle T \rangle = \frac{1}{2} E_g,
 \end{equation}
-where $E_g$ is the ground state of the Harmonic oscillator (this is making use of the Virial theorem).  We can easily
-find the ground state energy in the Harmonic oscillator approximation of $HF$ using our frequency calculation described above as
+where $$ E_g $$ is the ground state of the Harmonic oscillator (this is making use of the Virial theorem).  We can easily
+find the ground state energy in the Harmonic oscillator approximation of HF using our frequency calculation described above as
 \begin{equation}
 E_g = \frac{1}{2} h \nu,
 \end{equation}
