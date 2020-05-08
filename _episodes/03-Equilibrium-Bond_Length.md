@@ -10,6 +10,9 @@ keypoints:
 - "Each level of theory has a unique potential energy curve and might be expected to give a unique equilibrium bond length.  We have fit each potential energy curve with splines, so there may be limitations to the precision in our equilibrium bond length estimate coming from the resultion of the points we fit our spline to, or from the fit of the spline itself; which do you think is more significant?"
 ---
 
+### Equilibrium bond length
+Next we will find where the minimum of the potential energy surfaces are and use that to find the equilibrium bond length, making use of numpy's argmin function to find the index corresponding to the minimum value in a numpy array:
+
 {% include links.md %}
 ```
 ### Find Equilibrium Bond-Lengths for each level of theory
