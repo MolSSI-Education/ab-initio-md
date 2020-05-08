@@ -1,7 +1,7 @@
 ---
-title: "Choosing intial bond-length and velocity"
-teaching: 0
-exercises: 0
+title: "Optional Lesson on Choosing intial bond-length and velocity"
+teaching: 45
+exercises: 15
 questions:
 - "How do we initialize the position and velocity of the atoms for our molecular dynamics simulation?"
 objectives:
@@ -9,7 +9,11 @@ objectives:
 keypoints:
 - "We can utilize the virial theorem from quantum mechanics to provide a reasonable value of the classical velocity associated with vibrational motion."
 ---
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
+ <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 
 ### For further consideration: What makes a "sensible range of values" for position and velocity?
 
