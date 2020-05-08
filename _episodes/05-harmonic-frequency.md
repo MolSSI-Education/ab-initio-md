@@ -1,7 +1,7 @@
 ---
 title: "Computing the harmonic frequency"
-teaching: 0
-exercises: 0
+teaching: 15
+exercises: 15
 questions:
 - "How do we use information about the _ab_ _initio_ potential energy surface to estimate the vibrational frequency of a diatomic molecule??"
 objectives:
@@ -24,20 +24,29 @@ and that the vibrational frequency of the molecule within the Harmonic oscillato
 
 $$ \nu = \frac{1}{2\pi}\sqrt{\frac{k}{\mu}} $$
 
-where $$ \mu $$ is the reduced mass of the molecule and $$ k $$ is known as the force constant, which as we saw 
-in the previous lesson can be defined as
-
-$$ k = \frac{d^2}{dr^2} V(r_{eq}).$$
+where $$ \mu $$ is the reduced mass of the molecule and $$ k $$ is known as the force constant, which we computed 
+in the previous lesson.
 
 The reduced mass of HF is defined as
 $$ \mu = \frac{m_H \cdot m_F}{m_H + m_F}, $$
 
 where $$ m_H $$ and $$ m_F $$ are the masses of Hydrogen and Fluoride, respectively.
 
-Let's go ahead and get the force constants at each level of theory, print the values, and estimate the potential energy within the Harmonic approximation! Just like we were able to differentiate our PES splines to get a force spline, we can differentiate a force splines to get curvature splines (which we can call RHF_Curvature, MP2_Curvature, and CCSD_Curvature); the force constant will then be the curvature evaluated at the equlibrium bond length.
+Let's go ahead utilize the force constants from the last lesson to estimate the potential energy surface within the Harmonic approximation.  We can also estimate the vibrational frequency within the Harmonic approximation usin the force constant and the reduced mass.
 
 {% include links.md %}
 ```
+### define harmonic potential for each level of theory
+RHF_Harm_Pot = RHF_k*(r_fine-RHF_Req)**2 + RHF_E_Spline(RHF_Req)
+MP2_Harm_Pot = MP2_k*(r_fine-MP2_Req)**2 + MP2_E_Spline(MP2_Req)
+CCSD_Harm_Pot = CCSD_k*(r_fine-CCSD_Req)**2 + CCSD_E_Spline(CCSD_Req)
+
+
+### plot the Harmonic potential! 
+plt.plot(r_fine, RHF_Harm_Pot, 'red')
+plt.plot(r_fine, MP2_Harm_Pot, 'green')
+plt.plot(r_fine, CCSD_Harm_Pot, 'blue')
+plt.show()
 
 ### define reduced mass of HF as m_H * m_H /(m_F + m_H) where mass is in atomic units (electron mass = 1)
 m_F = 34883.
