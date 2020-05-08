@@ -32,6 +32,11 @@ from scipy.interpolate import InterpolatedUnivariateSpline
 ```
 {: .language-python}
 
+The following block utilizes the psi4 quantum chemistry package (via the psi4numpy library) to compute the potential energy surface for HF.  Psi4numpy provides a seamless interface between python and psi4's functionality.
+We will create an editable template for a z-matrix, which is a convention for specifying molecular geometry for quantum chemistry calculations.  
+We will then create arrays for the bond length and energies at each bond length for three different levels of theory (RHF/cc-pVTZ, 
+MP2/cc-pVTZ, and CCSD/cc-pVTZ). Let's have our bond lengths spane 0.5 - 2.3 $\overset{\circ}{A}$; note that should use finer resolution for short bondlengths than our longer bondlengths because we want to be sure we accurately represent the minimum energy point on the PES!  We will use the values of this array of bond-lengths in our z-matrix and will call psi4 to compute the energy at these three levels of theory and store the results to our respective energy arrays.
+
 ``` 
 ### template for the z-matrix
 mol_tmpl = """H
@@ -56,11 +61,11 @@ for r in r_array:
 ### loop over instances of molecules, compute the RHF, MP2, and CCSD
 ### energies and store them in their respective arrays
 for mol in molecules:
-    energy = psi4.energy("SCF/cc-pVDZ", molecule=mol)
+    energy = psi4.energy("SCF/cc-pVTZ", molecule=mol)
     HF_E_array.append(energy)
-    energy = psi4.energy("MP2/cc-pVDZ", molecule=mol)
+    energy = psi4.energy("MP2/cc-pVTZ", molecule=mol)
     MP2_E_array.append(energy)
-    energy = psi4.energy("CCSD/cc-pVDZ",molecule=mol)
+    energy = psi4.energy("CCSD/cc-pVTZ",molecule=mol)
     CCSD_E_array.append(energy)
 
 ### Plot the 3 different PES
