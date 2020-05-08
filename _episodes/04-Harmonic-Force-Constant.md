@@ -3,9 +3,9 @@ title: "Force Constant for Harmonic Potential"
 teaching: 5 minutes
 exercises: 10 minutes
 questions:
-- "How do we define the potential within the Harmonic approxmation?"
+- "How do we define the force constant of a diatomic molecule?"
 objectives:
-- "The second derivative at the equlibrium bond length is used to define the force constant, which defines the harmonic potential and force."
+- "The second derivative at the equlibrium bond length is used to define the force constant."
 keypoints:
 - "Each level of theory has a unique potential energy curve and might be expected to give a unique force constant."
 ---
@@ -44,18 +44,6 @@ print("Hartree-Fock force constant is ",RHF_k," atomic units")
 print("MP2 force constant is ",MP2_k," atomic units")
 print("CCSD force constant is ",CCSD_k," atomic units")
 
-
-### define harmonic potential for each level of theory
-RHF_Harm_Pot = RHF_k*(r_fine-RHF_Req)**2 + RHF_E_Spline(RHF_Req)
-MP2_Harm_Pot = MP2_k*(r_fine-MP2_Req)**2 + MP2_E_Spline(MP2_Req)
-CCSD_Harm_Pot = CCSD_k*(r_fine-CCSD_Req)**2 + CCSD_E_Spline(CCSD_Req)
-
-
-### plot!
-plt.plot(r_fine, RHF_Harm_Pot, 'red')
-plt.plot(r_fine, MP2_Harm_Pot, 'green')
-plt.plot(r_fine, CCSD_Harm_Pot, 'blue')
-plt.show()
 ```
 {: .language-python}
 
