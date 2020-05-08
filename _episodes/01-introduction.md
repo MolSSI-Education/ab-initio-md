@@ -29,6 +29,11 @@ $$ \vec{F} = m \vec{a}. $$
 
 The acceleration of each particle in turn determines how the position and momentum of each particle changes.  Therefore, the trajectories one observes in a molecular dynamics simulation is governed by the forces experienced by the particles being simulated.
 
-In this exercise, we will compute the forces experienced by our particles using the tools of quantum chemistry.  The resulting molecular dynamics simulation is often referred to as an _ab_ _initio_ molecular dynamics simulation, since the underlying forces are determined from _first_ _principles_, i.e. through quantum mechanics.  To the extent that our _ab_ _initio_ method is accurate, we will obtain accurate forces to recover realistic dynamics of the system we are studying.   
+In this exercise, we will compute the forces experienced by our particles using the tools of quantum chemistry.  In particular, we will simulate the vibrational motion of the diatomic molecule HF where the relevant force is a one-dimensional force acting along the interparticle separation.  We will derive this force from the potential curve of the HF molecule, which depends on the HF separation or bond-length as follows,
+
+$$ F(r) = -\frac{d}{dr} V(r), $$
+
+where $V(r)$ denotes the potential as a function of the bondlength that can be readily computed from _ab_ _initio_ calculations.
+The resulting molecular dynamics simulation is often referred to as an _ab_ _initio_ molecular dynamics simulation, since the underlying forces are determined from _first_ _principles_, i.e. through quantum mechanics.  To the extent that our _ab_ _initio_ method is accurate, we will obtain accurate forces to recover realistic dynamics of the system we are studying.   
 
 
