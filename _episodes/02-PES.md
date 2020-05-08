@@ -17,6 +17,11 @@ energy surfaces, and for automatically computing derivatives of these surfaces t
 
  <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
  
+### Part 1: Generation of ab initio potential energy surfaces (PES)
+We are going to construct what is often referred to as an ab initio potential energy surface of the diatomic molecule hydrogen fluoride. That is, we are going to use various electronic structure theories (Hartree-Fock theory (RHF), 2nd-order perturbation theory (MP2), and Coupled Cluster theory with single and double substitutions (CCSD)) to compute the electronic energy at different geometries of a simple diatomic molecule. The same basis set (correlation consistent polarized triple-zeta, cc-pVTZ) will be used for all calculations. We will use Psi4numpy to facilitate the electronic structure calculations, and then the interpolation capabilities of scipy to simplify the evalution of the potential energy at separations for which we did not explicitly evaluate the electronic energy. We will also use scipy to differentiate the interpolated potential energy surface to obtain the forces acting on the atoms at different separations.
+
+We will start by importing the necessary libraries:
+ 
 {% include links.md %}
 
 ``` 
