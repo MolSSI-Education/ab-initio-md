@@ -1,7 +1,7 @@
 ---
 title: "Force Constant for Harmonic Potential"
-teaching: 15 minutes
-exercises: 15 minutes
+teaching: 5 minutes
+exercises: 10 minutes
 questions:
 - "How do we define the potential within the Harmonic approxmation?"
 objectives:
@@ -19,9 +19,11 @@ keypoints:
 
 ## The force constant
 
-The force constant is defined as the second derivative of the potential energy surface evaluated at the minimum.
+The force constant is defined as the second derivative of the potential energy surface evaluated at the minimum,
 
-$$ k = \frac{d^2}{dr^2} V(r_{eq})$$.
+$$ k = \frac{d^2}{dr^2} V(r_{eq}). $$
+
+With the equilibrium bond-length and the force spline in hand, we can utilize the derivative method associated with our force splines and evaluate it at the equilibrium bond length to compute the force constants.
 
 ```
 ### get second derivative of potential energy curve... recall that we fit a spline to
