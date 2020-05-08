@@ -75,11 +75,11 @@ plt.plot(r_array,CCSD_E_array,'g*', label='CCSD')
 ```
 {: .language-python}
 
-Now that you have the raw data, we will interpolate this data using cubic splines.  This will permit us to 
+### Note on units
+The energies we obtained from psi4 are in Hartrees, which are the atomic unit of energy. We have so far been specifying our separation in Angstroms (not the atomic unit of length) so we are in a mixed unit system. When we generate our spline, we will use an array of bond lengths in atomic units as the x-data and the energies in atomic units as the y-data, which will yield a PES purely in atomic units. Therefore, the first thing we will do before creating the spline is to create an array of bond lengths in atomic units (~1.89 * bond lengths in Angstroms is the bond length in atomic units); we will then create three cubic splines (RHF_E_Spline, MP2_E_Spline, CCSD_E_SPline) that hold the PES data in atomic units for the three levels of theory.  This will permit us to 
 estimate the potential energy at any arbitrary separation between 0.5 and 2.3 Angstroms (roughly 
 1 and 4.3 a.u.) with fairly high confidence for each level of theory, and will also allow us to estimate the corresponding
-forces 
-(the negative of the derivative of the PES with respect to separation)
+forces (the negative of the derivative of the PES with respect to separation)
 at any separation between 1.0 and 4.3 a.u. since the derivative of cubic splines are readily available.
 
 First, we wwill interpolate the energies for each level of theory:
