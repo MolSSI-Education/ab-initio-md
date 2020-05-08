@@ -15,7 +15,7 @@ keypoints:
 
  <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 
-###. Harmonic Frequency
+### Harmonic Frequency
 You might have learned that the Harmonic Oscillator potential, which is a reasonable model for the vibrational motion of diatomic atomcs near their equilibrium bond length, is given by
 
 $$ V(r) = \frac{1}{2} k (r-r_{eq})^2 + V(r_{eq}) $$
