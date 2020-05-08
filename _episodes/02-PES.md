@@ -1,7 +1,7 @@
 ---
 title: "_ab_ _initio_ potential energy surface"
-teaching: 15 minutes
-exercises: 15 minutes
+teaching: 30 minutes
+exercises: 30 minutes
 questions:
 - "How do we obtain realistic intramolecular forces?"
 objectives:
@@ -35,7 +35,7 @@ from scipy.interpolate import InterpolatedUnivariateSpline
 The following block utilizes the psi4 quantum chemistry package (via the psi4numpy library) to compute the potential energy surface for HF.  Psi4numpy provides a seamless interface between python and psi4's functionality.
 We will create an editable template for a z-matrix, which is a convention for specifying molecular geometry for quantum chemistry calculations.  
 We will then create arrays for the bond length and energies at each bond length for three different levels of theory (RHF/cc-pVTZ, 
-MP2/cc-pVTZ, and CCSD/cc-pVTZ). Let's have our bond lengths spane 0.5 - 2.3 $\overset{\circ}{A}$; note that should use finer resolution for short bondlengths than our longer bondlengths because we want to be sure we accurately represent the minimum energy point on the PES!  We will use the values of this array of bond-lengths in our z-matrix and will call psi4 to compute the energy at these three levels of theory and store the results to our respective energy arrays.
+MP2/cc-pVTZ, and CCSD/cc-pVTZ). Let's have our bond lengths spane 0.5 - 2.3 $$ \overset{\circ}{A} $$; note that should use finer resolution for short bondlengths than our longer bondlengths because we want to be sure we accurately represent the minimum energy point on the PES!  We will use the values of this array of bond-lengths in our z-matrix and will call psi4 to compute the energy at these three levels of theory and store the results to our respective energy arrays.
 
 ``` 
 ### template for the z-matrix
