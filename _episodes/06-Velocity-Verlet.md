@@ -30,7 +30,7 @@ $$ v(t_i + \Delta t) = v(t_i) + \frac{1}{2} \left(a(t_i) + a(t_i + \Delta t)  \r
 This prescription for updating the velocities and positions is known as the Velocity-Verlet algorithm.
 Note that we need to perform 2 force evaluations per Velocity-Verlet iteration: one corresponding to position $$ r(t_i) $$ to update the position, and then a second time at the updated position $$ r(t_i + \Delta t) $$ to complete the velocity update.
 
-We will create a function called `Velocity_Verlet` that takes the arguments `r_curr`, `v_curr`, `mu, `force_spline`, and `timestep` and returns a 2-element array containing the updated position (`r_fut`) and velocity (`v_fut`) value.
+We will create a function called `Velocity_Verlet` that takes arguments `r_curr`, `v_curr`, `mu, `force_spline`, and `timestep` and returns a 2-element array containing the updated position (`r_fut`) and velocity (`v_fut`) value.
 
 ### Validating Velocity-Verlet algorithm with the Harmonic Oscillator
 Newton's equation of motion can be solved analytically for the Harmonic oscillator, and we can use this fact to validate our Velocity-Verlet algorithm. That is, the vibrational motion of a diatomic subject to a Harmonic potential predicted by the Velocity-Verlet algorithm should closely match the analytical solution. Analytically, the bond length as a function of time for a diatomic experiencing a harmonic potential is given by
