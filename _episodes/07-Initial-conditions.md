@@ -32,11 +32,11 @@ which implies the kinetic energy expectation value is
 \begin{equation}
 \langle T \rangle = \frac{h}{8 \pi} \sqrt{\frac{k}{\mu}}.
 \end{equation}
-Since we can say classically that the kinetic energy is given by $T = \frac{1}{2}\mu v^2$, we can estimate the velocity of the bond stretch as follows:
+Since we can say classically that the kinetic energy is given by $$ T = \frac{1}{2}\mu v^2 $$, we can estimate the velocity of the bond stretch as follows:
 \begin{equation}
 v = \sqrt{\frac{2 \langle T \rangle}{\mu}} = \sqrt{ \frac{\hbar \sqrt{\frac{k}{\mu}}}{2\mu}}
 \end{equation}
-where we have simplified using the fact that $\hbar = \frac{h}{2\pi}$ ($\hbar$ has the value 1 in the atomic unit system we are using up to this point!).  We will assume that a reasonable
+where we have simplified using the fact that $$ \hbar = \frac{h}{2\pi} $$ ($$ \hbar $$ has the value 1 in the atomic unit system we are using up to this point!).  We will assume that a reasonable
 range of velocities spans plus or minus 3 times this "ground-state" velocity.
 
 
